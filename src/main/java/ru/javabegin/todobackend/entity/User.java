@@ -1,5 +1,6 @@
 package ru.javabegin.todobackend.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -31,6 +32,7 @@ public class User {
     @Column(name = "username", nullable = false, length = -1)
     private String username;
 
+    @JsonBackReference
     @ManyToMany(mappedBy = "users", fetch = FetchType.EAGER)
     private Set<Role> roles;
 

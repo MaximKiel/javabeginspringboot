@@ -30,7 +30,7 @@ public class Category {
     @Column(name = "uncompleted_count", nullable = false)
     private Long uncompletedCount;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;
 

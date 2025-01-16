@@ -18,6 +18,6 @@ public class CategoryController {
 
     @GetMapping("/id")
     public Category findById() {
-        return categoryService.findById(148786L);
+        return categoryService.findById(60127L);
     }
 }
