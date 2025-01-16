@@ -6,7 +6,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -28,12 +27,9 @@ public class Priority {
     @Column(name = "color", nullable = false, length = -1)
     private String color;
 
-//    @ManyToOne
-//    @JoinColumn(name = "user_id", referencedColumnName = "id")
-//    private UserDataEntity user;
-
-    @OneToMany(mappedBy = "priority", fetch = FetchType.LAZY)
-    private List<Task> tasks;
+    @ManyToOne
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    private User user;
 
     @Override
     public boolean equals(Object o) {

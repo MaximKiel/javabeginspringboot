@@ -6,7 +6,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -31,12 +30,9 @@ public class Category {
     @Column(name = "uncompleted_count", nullable = false)
     private Long uncompletedCount;
 
-//    @ManyToOne
-//    @JoinColumn(name = "user_id", referencedColumnName = "id")
-//    private UserDataEntity user;
-
-    @OneToMany(mappedBy = "category", fetch = FetchType.LAZY)
-    private List<Task> tasks;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    private User user;
 
     @Override
     public boolean equals(Object o) {

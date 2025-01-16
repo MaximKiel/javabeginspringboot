@@ -31,26 +31,8 @@ public class User {
     @Column(name = "username", nullable = false, length = -1)
     private String username;
 
-    @ManyToMany
-    @JoinTable(name = "user_role",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id"))
+    @ManyToMany(mappedBy = "users", fetch = FetchType.EAGER)
     private Set<Role> roles;
-
-//    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
-//    private List<TaskEntity> tasks;
-//
-//    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
-//    private List<Category> categories;
-//
-//    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
-//    private List<Priority> priorities;
-//
-//    @OneToOne(mappedBy = "user", fetch = FetchType.LAZY, optional = false)
-//    public Activity activity;
-//
-//    @OneToOne(mappedBy = "user", fetch = FetchType.LAZY, optional = false)
-//    public StatEntity stat;
 
     @Override
     public boolean equals(Object o) {
