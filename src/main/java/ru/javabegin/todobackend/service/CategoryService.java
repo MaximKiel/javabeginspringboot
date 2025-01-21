@@ -20,4 +20,8 @@ public class CategoryService {
     public List<Category> findAll(String email) {
         return repository.findByUserEmailOrderByTitleAsc(email);
     }
+
+    public Category add(Category category) {
+        return repository.save(category);
+    }
 }
