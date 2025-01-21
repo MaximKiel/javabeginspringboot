@@ -5,6 +5,8 @@ import org.springframework.transaction.annotation.Transactional;
 import ru.javabegin.todobackend.entity.Category;
 import ru.javabegin.todobackend.repository.CategoryRepository;
 
+import java.util.List;
+
 @Service
 @Transactional
 public class CategoryService {
@@ -15,7 +17,7 @@ public class CategoryService {
         this.repository = repository;
     }
 
-    public Category findById(Long id) {
-        return repository.findById(id).get();
+    public List<Category> findAll(String email) {
+        return repository.findByUserEmailOrderByTitleAsc(email);
     }
 }

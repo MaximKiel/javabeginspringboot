@@ -1,10 +1,10 @@
 package ru.javabegin.todobackend.controller;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import ru.javabegin.todobackend.entity.Category;
 import ru.javabegin.todobackend.service.CategoryService;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/category")
@@ -16,8 +16,8 @@ public class CategoryController {
         this.categoryService = categoryService;
     }
 
-    @GetMapping("/id")
-    public Category findById() {
-        return categoryService.findById(60127L);
+    @PostMapping("/all")
+    public List<Category> findById(@RequestBody String email) {
+        return categoryService.findAll(email);
     }
 }
