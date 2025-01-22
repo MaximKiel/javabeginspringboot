@@ -32,9 +32,9 @@ public class User {
     @Column(name = "username", nullable = false, length = -1)
     private String username;
 
-    @JsonBackReference
-    @ManyToMany(mappedBy = "users", fetch = FetchType.EAGER)
-    private Set<Role> roles;
+//    @JsonBackReference
+//    @ManyToMany(mappedBy = "users", fetch = FetchType.EAGER)
+//    private Set<Role> roles;
 
     @Override
     public boolean equals(Object o) {
