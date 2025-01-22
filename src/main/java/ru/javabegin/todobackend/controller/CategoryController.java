@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.javabegin.todobackend.entity.Category;
+import ru.javabegin.todobackend.search.CategorySearchValues;
 import ru.javabegin.todobackend.service.CategoryService;
 
 import java.util.List;
@@ -37,7 +38,7 @@ public class CategoryController {
 
     @PutMapping("/update")
     public ResponseEntity update(@RequestBody Category category) {
-        if (category.getId() == null && category.getId() == 0) {
+        if (category.getId() == null || category.getId() == 0) {
             return new ResponseEntity("missed param: id", HttpStatus.NOT_ACCEPTABLE);
         }
         if (category.getTitle() == null || category.getTitle().trim().length() == 0) {
@@ -56,5 +57,14 @@ public class CategoryController {
             return new ResponseEntity("id=" + id + " not found", HttpStatus.NOT_ACCEPTABLE);
         }
         return new ResponseEntity(HttpStatus.OK);
+    }
+
+    @PostMapping("/search")
+    public ResponseEntity<List<Category>> search(@RequestBody CategorySearchValues categorySearchValues) {
+        if (categorySearchValues.getEmail() == null || categorySearchValues.getEmail().trim().length() == 0) {
+            return new ResponseEntity("missed param: email", HttpStatus.NOT_ACCEPTABLE);
+        }
+        List<Category> list = categoryService.findByTitle(categorySearchValues.getTitle(), categorySearchValues.getEmail());
+        return ResponseEntity.ok(list);
     }
 }
