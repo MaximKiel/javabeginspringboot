@@ -36,4 +36,8 @@ public class CategoryService {
     public void deleteById(Long id) {
         repository.deleteById(id);
     }
+
+    public Category findById(Long id) {
+        return repository.findById(id).get();
+    }
 }

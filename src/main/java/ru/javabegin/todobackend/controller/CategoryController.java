@@ -9,6 +9,7 @@ import ru.javabegin.todobackend.search.CategorySearchValues;
 import ru.javabegin.todobackend.service.CategoryService;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @RestController
 @RequestMapping("/category")
@@ -66,5 +67,17 @@ public class CategoryController {
         }
         List<Category> list = categoryService.findByTitle(categorySearchValues.getTitle(), categorySearchValues.getEmail());
         return ResponseEntity.ok(list);
+    }
+
+    @PostMapping("/id")
+    public ResponseEntity<Category> findById(@RequestBody Long id) {
+        Category category = null;
+        try {
+            category = categoryService.findById(id);
+        } catch (NoSuchElementException e) {
+            e.printStackTrace();
+            return new ResponseEntity("id=" + id + " not found", HttpStatus.NOT_ACCEPTABLE);
+        }
+        return ResponseEntity.ok(category);
     }
 }
