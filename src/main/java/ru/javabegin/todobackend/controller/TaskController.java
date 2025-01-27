@@ -118,9 +118,9 @@ public class TaskController {
             Calendar calendarFrom = Calendar.getInstance();
             calendarFrom.setTime(taskSearchValues.getDateFrom());
             calendarFrom.set(Calendar.HOUR_OF_DAY, 0);
-            calendarFrom.set(Calendar.MINUTE, 0);
-            calendarFrom.set(Calendar.SECOND, 0);
-            calendarFrom.set(Calendar.MILLISECOND, 0);
+            calendarFrom.set(Calendar.MINUTE, 1);
+            calendarFrom.set(Calendar.SECOND, 1);
+            calendarFrom.set(Calendar.MILLISECOND, 1);
 
             dateFrom = calendarFrom.getTime();
 
